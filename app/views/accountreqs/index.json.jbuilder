@@ -1,0 +1,1 @@
+json.array! @accountreqs, partial: 'accountreqs/accountreq', as: :transaction

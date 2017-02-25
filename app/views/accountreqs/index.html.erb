@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Accountreqs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @accountreqs.each do |accountreq| %>
+      <tr>
+        <td><%= User.find(accountreq.user_id).email %></td>
+        <td><%= User.find(accountreq.user_id).name %></td>
+
+        <td><%= link_to 'Accept', edit_accountreq_path(accountreq) %></td>
+        <td><%= link_to 'Reject',  reject_accountreq_path(accountreq) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Back', home_page_path %>

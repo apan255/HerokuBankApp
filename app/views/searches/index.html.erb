@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>User Searches</h1>
+Search by email
+<%= form_tag(searches_path, :method => "get", searchid: "search-form") do %>
+    <%= text_field_tag :email, params[:search], placeholder: "Email id" %>
+    <%= submit_tag "Search" %>
+<% end %>
+Search by name
+<br>
+<%= form_tag(searches_path, :method => "get", searchid: "search-form") do %>
+    <%= text_field_tag :name, params[:search], placeholder: "Name" %>
+    <%= submit_tag "Search" %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if @searches.present? %>
+      <% @searches.each do |search| %>
+        <tr>
+          <td><%= search.email %></td>
+          <td><%= search.name %></td>
+          <td><%= link_to 'Add', add_friends_url search %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Search', new_search_path %>

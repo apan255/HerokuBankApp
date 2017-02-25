@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Friends</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Friend</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @friends.each do |friend| %>
+      <tr>
+
+        <td><%= User.find(friend.friend_id).email %></td>
+        <td><%= link_to 'Show', friend %></td>
+        <td><%= link_to 'Edit', edit_friend_path(friend) %></td>
+        <td><%= link_to 'Destroy', friend, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if params[:account].present? %>
+          <td><%= link_to 'Transfer Balance', new_transfer_path(account: params[:account], friend: friend.friend_id)%></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Friend', new_friend_path %>
+<%= link_to 'Back', home_page_path %>

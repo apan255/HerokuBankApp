@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Transactions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Amount</th>
+      <th>Type</th>
+      <th>Status</th>
+      <th>Trans from</th>
+      <th>Trans to</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>From account</th>
+      <th>To account</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <% if session[:user_admin] == '1' %>
+  <tbody>
+    <% @transactions.each do |transaction| %>
+      <tr>
+        <td><%= transaction.amount %></td>
+        <td><%= transaction.trans_type %></td>
+        <td><%= transaction.status %></td>
+        <td><%= User.find_by(transaction.trans_from_id).email %></td>
+        <td><%= User.find_by(transaction.trans_to_id).email %></td>
+        <td><%= transaction.start_date %></td>
+        <td><%= transaction.end_date %></td>
+        <td><%= Account.find_by(transaction.from_account).account_num %></td>
+        <td><%= Account.find_by(transaction.to_account).account_num %></td>
+
+        <td><%= link_to 'Approve', edit_transaction_path(transaction) %></td>
+        <td><%= link_to 'Reject', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+   <% else %>
+      <% @transactions.each do |transaction| %>
+          <tr>
+            <td><%= transaction.amount %></td>
+            <td><%= transaction.trans_type %></td>
+            <td><%= transaction.status %></td>
+            <td><%= User.find_by(transaction.trans_from_id).email %></td>
+            <td><%= User.find_by(transaction.trans_to_id).email %></td>
+            <td><%= transaction.start_date %></td>
+            <td><%= transaction.end_date %></td>
+            <td><%= Account.find_by(transaction.from_account).account_num %></td>
+            <td><%= Account.find_by(transaction.to_account).account_num %></td>
+          </tr>
+      <% end %>
+  <% end %>
+</table>
+
+<br>
+
+<%= link_to 'Back', transactions_path %>

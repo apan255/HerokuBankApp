@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Transactions</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Amount</th>
+    <th>Type</th>
+    <th>Status</th>
+    <th>Trans from</th>
+    <th>Trans to</th>
+    <th>Start date</th>
+    <th>End date</th>
+    <th>From account</th>
+    <th>To account</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+      <tbody>
+      <% @transactions.each do |transaction| %>
+          <tr>
+            <td><%= transaction.amount %></td>
+            <td><%= transaction.trans_type %></td>
+            <td><%= transaction.status %></td>
+            <td><%= User.find_by(transaction.trans_from_id).email %></td>
+            <td><%= User.find_by(transaction.trans_to_id).email %></td>
+            <td><%= Account.find_by(transaction.from_account_id).account_num %></td>
+            <td><%= Account.find_by(transaction.to_account_id).account_num %></td>
+
+            <td><%= link_to 'Approve', edit_pendtransaction_path(transaction) %></td>
+            <td><%= link_to('Reject',  {:controller => 'pendtransactions', :action => 'destroy', :id => transaction.id}) %></td>
+          </tr>
+      <% end %>
+      </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Back', home_page_path %>

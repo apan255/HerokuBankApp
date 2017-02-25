@@ -1,0 +1,17 @@
+<%= form_for @transaction, :url => url_for(:controller => 'transfers', :action => 'create') do |f| %>
+
+    <%= hidden_field_tag :account_num, params[:account] %>
+    Transfer to: <% @user = User.find(params[:friend]) %><br>
+           Email:       <%= @user.email %><br>
+           Name:       <%= @user.name %><br>
+
+    <br>
+    <%= hidden_field_tag :account_num, params[:account] %>
+    <%= hidden_field_tag :friend, params[:friend] %>
+    Amount:
+    <%= text_field_tag :amount %>
+    <br>
+    <div class="actions">
+      <%= f.submit "Deposit" %>
+    </div>
+<% end %>

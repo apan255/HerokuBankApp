@@ -1,0 +1,10 @@
+<%= form_for @transaction, :url => url_for(:controller => 'withdraws', :action => 'create') do |f| %>
+
+    <%= hidden_field_tag :account_num, params[:account] %>
+    Amount
+    <%= text_field_tag :amount %>
+
+    <div class="actions">
+      <%= f.submit "Withdraw" %>
+    </div>
+<% end %>

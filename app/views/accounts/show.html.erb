@@ -1,0 +1,21 @@
+<%= @accounts.each do |f| %>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Account:</strong>
+  <%= f.account_id %>
+</p>
+
+<p>
+  <strong>Balance:</strong>
+  <%= f.balance %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= f.status %>
+</p>
+
+<% end %>
+<%= link_to 'Back', accounts_path %>

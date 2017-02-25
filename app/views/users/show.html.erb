@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+
+<% if @user.admin == '0'%>
+      User Mode <br>
+    <p>
+      <strong>Email:</strong>
+      <%= @user.email %>
+    </p>
+
+    <p>
+      <strong>Name:</strong>
+      <%= @user.name %>
+    </p>
+    <%= link_to 'Edit Profile', edit_user_path(@user) %> |
+    <h2>Request account creation</h2>
+    <%= link_to 'New account', new_account_path %>
+
+    <h2>View Accounts</h2>
+    <%= link_to 'View accounts', accounts_path %>
+
+    <br><br>
+    <h2>User Friends</h2>
+    <%= link_to 'Show Friends', friends_path %>
+
+    <h3> User transactions</h3>
+    <%= link_to 'User transactions', transactions_path %>
+
+    <%= link_to 'Back', users_path %>
+
+<% else %>
+    Admin Mode <br>
+
+    <p>
+      <strong>Email:</strong>
+      <%= @user.email %>
+    </p>
+
+    <p>
+      <strong>Name:</strong>
+      <%= @user.name %>
+    </p>
+    <%= link_to 'Edit Profile', edit_user_path(@user) %> |
+    <br>
+    <br>
+    Create admin:
+    <%= link_to 'Create Admins', new_admin_path %>
+    <br><br>
+    <%= link_to 'Show Admins', admins_path %>
+    <br>
+    <br>
+    <%= link_to 'Account creation requests', accountreqs_path %>
+
+    <br>
+    <br>
+    <%= link_to 'Pending Transaction requests', pendtransactions_path %>
+    <br>
+    <br>
+
+    <%= link_to 'Transactions History', transhistory_url %>
+    <br>
+    <br>
+
+<% end %>
+
+<br>
+<br>
+LOGOUT <br>
+<%= link_to 'Logout', logout_url %> |
